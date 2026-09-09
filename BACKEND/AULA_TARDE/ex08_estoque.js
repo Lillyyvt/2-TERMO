@@ -8,6 +8,4 @@
 // Percorrer o array com um laço.
 // Se quantidade for menor que estoqueMinimo, exibir 'REPOR ESTOQUE'.
 // Caso contrário, exibir 'ESTOQUE OK'.
-
-const entrada = require('readline-sync')
-
+ 

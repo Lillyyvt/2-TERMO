@@ -16,5 +16,12 @@ const operadores = [];
 
 for (let i = 0; i < 5; i++) {
     const nome = entrada.question(`Digite o nome do operador ${i + 1}:`);
-    operadores.push = nome 
+     operadores.push(nome)
+console.log("------------------------")
 }
+console.log("NOMES CADASTRADOS")
+console.log(`Operador 1: ${operadores[0]}`);
+console.log(`Operador 2: ${operadores[1]}`);
+console.log(`Operador 3: ${operadores[2]}`);
+console.log(`Operador 4: ${operadores[3]}`);
+console.log(`Operador 5: ${operadores[4]}`);
