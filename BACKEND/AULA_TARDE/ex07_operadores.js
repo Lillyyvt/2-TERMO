@@ -18,4 +18,3 @@ for (let i = 0; i < 5; i++) {
     const nome = entrada.question(`Digite o nome do operador ${i + 1}:`);
     operadores.push = nome 
 }
-console.log(operadores[i]);
