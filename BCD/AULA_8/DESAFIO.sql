@@ -40,20 +40,57 @@ UPDATE cliente
 SET telefone = '19999888801'
 WHERE id_cliente = 4; 
 -- 8. Altere cidade e telefone de outro cliente em um único comando. 
+UPDATE CLIENTE
+SET TELEFONE = '19999945989',
+    CIDADE = 'RIO CLARO'
+WHERE ID_CLIENTE = 16;
 
 -- 9. Aumente em 8% os preços dos produtos da categoria criada. 
+UPDATE PRODUTO
+SET PRECO = PRECO * 1.08
+WHERE ID_CATEGORIA = @CATEGORIA;
+
 -- 10. Altere o status do novo pedido para PREPARANDO. 
+UPDATE PEDIDO
+SET STATUS_PEDIDO = 'PREPARANDO'
+WHERE ID_PEDIDO = @PEDIDO;
+
 -- 11. Atualize o valor_total do pedido para refletir os itens adicionados. 
+UPDATE PEDIDO
+SET VALOR_TOTAL = (
+    SELECT SUM(QUANTIDADE * PRECO_UNITARIO)
+    FROM ITEM_PEDIDO
+    WHERE ID_PEDIDO = @PEDIDO
+)
+WHERE ID_PEDIDO = @PEDIDO;
+
+
 -- 12. Desative um produto utilizando exclusão lógica. 
+UPDATE NOME_PRODUTO
+SET ATIVO = FALSE
+WHERE NOME = 'PIZZA' AND ID_CATEGORIA = @CATEGORIA;
+
 
 -- Parte C-DELETE 
 
 -- 13. Crie um cliente de teste que não possua pedidos e depois exclua-o. 
+INSERT INTO CLIENTE (NOME, EMAIL, TELEFONE, CIDADE, ATIVO) VALUES
+('CLIENTE TESTE', 'TESTE@EMAIL.COM', '19900000000', 'LIMEIRA', TRUE);
+SET @CLIENTE_TESTE = LAST_INSERT_ID();
 -- 14. Tente excluir um cliente que possui pedidos e registre o que aconteceu. 
+
+DELETE FROM CLIENTE 
+WHERE ID_CLIENTE = @CLIENTE_TESTE;
+
 -- 15. Explique por que a FK protegeu o banco. 
+
 -- 16. Crie uma categoria de teste sem produtos e depois remova-a. 
+INSERT INTO CATEGORIA (NOME_CATEGORIA) VALUES
+('CATEGORIA TESTE', 'CATEGORIA TEMPORARIA SEM PRODUTOS');
+SET @CATEGORIA_TESTE = LAST_INSERT_ID();
 
-
+DELETE FROM CATEGORIA 
+WHERE ID_CATEGORIA = @CATEGORIA_TESTE;
 
 
 
